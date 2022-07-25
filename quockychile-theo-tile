@@ -1,0 +1,68 @@
+a = int(input('nhập chiều dài của lá cờ: '))
+b = (a*2)/3   #chiều rộng của lá cờ
+
+import math
+canhtam = a/12
+canhngugiac = math.sqrt(canhtam**2 + canhtam**2 - 2*(canhtam*canhtam*(math.cos(math.radians(72)))))
+#print (canhngugiac)  
+#print (math.cos(math.radians(36)))
+canhngoisao = (canhngugiac/2)/(math.cos(math.radians(36)))
+#print (canhngoisao)
+
+xsao = ((a/6) - ((a/12)*(math.sin(math.radians(36)))))
+#print(xsao)
+
+ysao = (b - (b/4) - ((a/12)*(math.cos(math.radians(36)))))
+#print(ysao)
+
+#vẽ quốc kỳ 
+import turtle
+t = turtle.Turtle()
+t.penup()
+t.goto(-200,-200)
+t.pendown()
+
+
+for i in range(2):
+    t.forward(a)
+    t.left(90)
+    t.forward(b)
+    t.left(90)
+
+t.fillcolor("red")
+t.begin_fill()
+for i in range(2):
+    t.forward(a)
+    t.left(90)
+    t.forward(b/2)
+    t.left(90)
+t.end_fill()
+
+t.goto(0-200, ((b/2)-200))
+t.fillcolor("blue")
+t.begin_fill()
+for i in range(2):
+    t.forward(a/3)
+    t.left(90)
+    t.forward(b/2)
+    t.left(90)
+t.end_fill()
+
+t.penup()
+t.goto((xsao-200), (ysao-200))
+t.pendown()
+
+t.left(36)
+t.fillcolor("white")
+t.begin_fill()
+for i in range(5):
+    t.forward(canhngoisao)
+    t.right(72)
+    t.forward(canhngoisao)
+    t.left(144)
+t.end_fill()
+
+
+t.hideturtle()
+turtle.done()
+
