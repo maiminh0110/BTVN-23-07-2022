@@ -18,30 +18,34 @@ def dist(a, b):
     c = math.sqrt(a**2 + b**2)
     return c
 
-def trungdiemx(a, b):
-    c = (a + b)/2
-    return c
+def trongtam(a,b,c):
+    d = (a + b + c)/3
+    return d
 
-    
+xG = trongtam(xA, xB, xC)
+yG = trongtam(xA, yB, yC)
+
     
 xAB = Vx(xB, xA)
 yAB = Vy(yB, yA)
+xAG = Vx(xG, xA)
 xAC = Vx(xC, xA)
 yAC = Vy(yC, yA)
-
 xBC = Vx(xC, xB)
 yBC = Vy(yC, yB)
-xBA = Vx(xA, xB)
-yBA = Vy(yA, yB)
-
-xCA = Vx(xA, xC)
-yCA = Vy(yA, yC)
-yCB = Vx(xB, xC)
-yCB = Vy(yB, yC)
+yAG = Vy(yG, yA)
+xBG = Vx(xG, xB)
+yBG = Vy(yG, yB)
+xCG = Vx(xG, xC)
+yCG = Vy(yG, yC)
 
 c = dist(xAB, yAB)
 b = dist(xAC, yAC)
 a = dist(xBC, yBC)
+g1 = round((3/2)*dist(xAG, yAG),2)
+g2 = round((3/2)*dist(xBG, yBG),2)
+g3 = round((3/2)*dist(xCG, yCG),2)
+
 x = a + b
 y = a + c
 z = b + c
@@ -64,15 +68,73 @@ tamgiac = x > c and y > b and z > a and x1 < c and y1 < b and z1 < a
 print("3 số này là cạnh của 1 tam giác: ", tamgiac)
 
 
-h1 = abs(math.sin(angB))*c
-h2 = abs(math.sin(angB))*a
-h3 = abs(math.sin(angC))*a
+h1 = round(abs(math.sin(angB))*c, 2)
+h2 = round(abs(math.sin(angB))*a, 2)
+h3 = round(abs(math.sin(angC))*a, 2)
 
-def diem(a, b): 
-    c = a - b #a là tọa độ x hoặc y, b là khoảng cách vuông
-    return C
+yH = (xAC*(xA*xBC + yA*yBC) - xBC*(xB*xAC + yB*yAC))/(yBC*xAC - yAC*xBC)
+xH = (((yH -yA)*yBC)/xBC)+xA
+print (xH)
+xH = (((yH-yB)*yAC)/xAC) + xB
 
-print('độ dài đường cao 3 đỉnh lần lượt là: {}. {}, {}'.format(h1, h2, h3))
+
+print('độ dài đường cao 3 đỉnh lần lượt là: h1 = {}, h2 = {}, h3 = {}'.format(h1, h2, h3))
+print('độ dài đường trung tuyến 3 đỉnh lần lượt là: g1 = {}, g2 = {}, g3 = {}'.format(g1, g2, g3))
+print('tọa độ trực tâm H ({}, {})'.format((round(xH,2)), (round(yH,2))))
+print('tọa độ trọng tâm G ({}, {})'.format(xG, yG))
+
+#vẽ tam giác 
+import turtle 
+
+t = turtle.Turtle()
+
+t.color("green")
+t.penup()
+t.goto(xA, yA)
+t.pendown()
+t.goto(xB,yB)
+t.goto(xC,yC)
+t.goto(xA, yA)
+
+#vẽ đường cao 
+t.color("orange")
+t.penup()
+t.goto(xA,yA)
+t.pendown()
+t.goto(xH, yH)
+t.goto(xB, yB)
+t.penup()
+t.goto(xC, yC)
+t.pendown()
+t.goto(xH,yH)
+
+t.fillcolor("orange")
+t.begin_fill()
+t.circle(2)
+t.end_fill()
+
+#vẽ đường trung tuyến
+t.color("blue")
+t.penup()
+t.goto(xA,yA)
+t.pendown()
+t.goto(xG, yG)
+t.penup()
+t.goto(xB, yB)
+t.pendown()
+t.goto(xG, yG)
+t.penup()
+t.goto(xC, yC)
+t.pendown()
+t.goto(xG,yG)
+
+t.fillcolor("blue")
+t.begin_fill()
+t.circle(2)
+t.end_fill()
+
+t.hideturtle()
+turtle.done()
 
 
 
