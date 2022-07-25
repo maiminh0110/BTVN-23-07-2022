@@ -1,0 +1,78 @@
+xA = float(input("tọa độ x của điểm A: "))
+yA = float(input('tọa độ y của điểm A: ')) 
+xB = float(input("tọa độ x của điểm B: "))
+yB = float(input('tọa độ y của điểm B: ')) 
+xC = float(input("tọa độ x của điểm C: "))
+yC = float(input('tọa độ y của điểm C: '))
+
+import math
+#hàm tính vector x, y của đường thẳng
+def Vx(a, b): 
+    c = a - b
+    return c
+def Vy(a, b): 
+    c = a - b
+    return c
+
+def dist(a, b):
+    c = math.sqrt(a**2 + b**2)
+    return c
+
+def trungdiemx(a, b):
+    c = (a + b)/2
+    return c
+
+    
+    
+xAB = Vx(xB, xA)
+yAB = Vy(yB, yA)
+xAC = Vx(xC, xA)
+yAC = Vy(yC, yA)
+
+xBC = Vx(xC, xB)
+yBC = Vy(yC, yB)
+xBA = Vx(xA, xB)
+yBA = Vy(yA, yB)
+
+xCA = Vx(xA, xC)
+yCA = Vy(yA, yC)
+yCB = Vx(xB, xC)
+yCB = Vy(yB, yC)
+
+c = dist(xAB, yAB)
+b = dist(xAC, yAC)
+a = dist(xBC, yBC)
+x = a + b
+y = a + c
+z = b + c
+x1 = abs (a - b)
+y1 = abs (a - c)
+z1 = abs (b - c)
+
+cosA=(b**2 + c**2 - a**2)/(2*b*c)
+cosB=(a**2 + c**2 - b**2)/(2*a*c)
+cosC=(a**2 + b**2 - c**2)/(2*a*b)
+
+
+
+import math
+angA = round(math.degrees(math.acos(cosA)))
+angB = round(math.degrees(math.acos(cosB)))
+angC = round(math.degrees(math.acos(cosC)))
+
+tamgiac = x > c and y > b and z > a and x1 < c and y1 < b and z1 < a
+print("3 số này là cạnh của 1 tam giác: ", tamgiac)
+
+
+h1 = abs(math.sin(angB))*c
+h2 = abs(math.sin(angB))*a
+h3 = abs(math.sin(angC))*a
+
+def diem(a, b): 
+    c = a - b #a là tọa độ x hoặc y, b là khoảng cách vuông
+    return C
+
+print('độ dài đường cao 3 đỉnh lần lượt là: {}. {}, {}'.format(h1, h2, h3))
+
+
+
