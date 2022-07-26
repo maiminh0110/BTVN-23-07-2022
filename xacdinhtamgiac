@@ -57,31 +57,49 @@ cosA=(b**2 + c**2 - a**2)/(2*b*c)
 cosB=(a**2 + c**2 - b**2)/(2*a*c)
 cosC=(a**2 + b**2 - c**2)/(2*a*b)
 
-
-
 import math
 angA = round(math.degrees(math.acos(cosA)))
 angB = round(math.degrees(math.acos(cosB)))
 angC = round(math.degrees(math.acos(cosC)))
 
 tamgiac = x > c and y > b and z > a and x1 < c and y1 < b and z1 < a
-print("3 số này là cạnh của 1 tam giác: ", tamgiac)
+print("3 số này là cạnh của 1 tam giác: " , tamgiac)
 
 
 h1 = round(abs(math.sin(angB))*c, 2)
 h2 = round(abs(math.sin(angB))*a, 2)
 h3 = round(abs(math.sin(angC))*a, 2)
 
-yH = (xAC*(xA*xBC + yA*yBC) - xBC*(xB*xAC + yB*yAC))/(yBC*xAC - yAC*xBC)
-xH = (((yH -yA)*yBC)/xBC)+xA
-print (xH)
-xH = (((yH-yB)*yAC)/xAC) + xB
+def tructamY(xA, yA, xB, yB, xC, yC):
+    
+    #(xH - xA)(xc - xB) + (yH - yA)(yC - yB) = 0
+    #(xH - xB)(xC - xA) + (yH - yB)(yC - yA) = 0  
+
+    yH = ((yA*(yC-yB)*(xC-xA) - yB*(yC-yA)*(xC-xB)) - ((xC-xB)*(xC-xA)*(xB-xA)))/((yC-yB)*(xC-xA)-(yC-yA)*(xC-xB))
+    xH = (((yA - yH)*(yC - yB))/(xC - xB)) + xA
+          
+    return yH
+
+def tructamX(xA, yA, xB, yB, xC, yC):
+    
+    yH = ((yA*(yC-yB)*(xC-xA) - yB*(yC-yA)*(xC-xB)) - ((xC-xB)*(xC-xA)*(xB-xA)))/((yC-yB)*(xC-xA)-(yC-yA)*(xC-xB))
+    
+    xH = (((yA - yH)*(yC - yB))/(xC - xB)) + xA
+          
+    return xH
 
 
-print('độ dài đường cao 3 đỉnh lần lượt là: h1 = {}, h2 = {}, h3 = {}'.format(h1, h2, h3))
-print('độ dài đường trung tuyến 3 đỉnh lần lượt là: g1 = {}, g2 = {}, g3 = {}'.format(g1, g2, g3))
-print('tọa độ trực tâm H ({}, {})'.format((round(xH,2)), (round(yH,2))))
-print('tọa độ trọng tâm G ({}, {})'.format(xG, yG))
+yH = tructamY(xA, yA, xB, yB, xC, yC)
+xH = tructamX(xA, yA, xB, yB, xC, yC)
+
+
+print ('({}, {})'.format(xH, yH))
+
+
+print('\nđộ dài đường cao 3 đỉnh lần lượt là: h1 = {}, h2 = {}, h3 = {}'.format(h1, h2, h3))
+print('\nđộ dài đường trung tuyến 3 đỉnh lần lượt là: g1 = {}, g2 = {}, g3 = {}'.format(g1, g2, g3))
+print('\ntọa độ trực tâm H ({}, {})'.format((round(xH,2)), (round(yH,2))))
+print('\ntọa độ trọng tâm G ({}, {})'.format((round(xG,2)), (round(yG,2))))
 
 #vẽ tam giác 
 import turtle 
@@ -135,6 +153,5 @@ t.end_fill()
 
 t.hideturtle()
 turtle.done()
-
 
 
